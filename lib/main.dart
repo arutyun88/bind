@@ -1,23 +1,19 @@
+import 'package:bind/config/app_router.dart';
+import 'package:bind/config/routes.dart';
 import 'package:flutter/material.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(const Application());
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+class Application extends StatelessWidget {
+  const Application({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return const MaterialApp(
-      home: Scaffold(
-        body: Center(
-          child: Text(
-            'BIND',
-            style: TextStyle(fontSize: 24.0, fontStyle: FontStyle.italic),
-          ),
-        ),
-      ),
+      onGenerateRoute: AppRouter.onGenerateRoute,
+      initialRoute: Routes.home,
     );
   }
 }
