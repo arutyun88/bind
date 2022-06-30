@@ -1,6 +1,7 @@
 import 'package:bind/config/app_router.dart';
 import 'package:bind/config/routes.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 void main() {
   runApp(const Application());
@@ -11,7 +12,12 @@ class Application extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return MaterialApp(
+      theme: Theme.of(context).copyWith(
+        appBarTheme: Theme.of(context)
+            .appBarTheme
+            .copyWith(systemOverlayStyle: SystemUiOverlayStyle.light),
+      ),
       onGenerateRoute: AppRouter.onGenerateRoute,
       initialRoute: Routes.home,
     );
