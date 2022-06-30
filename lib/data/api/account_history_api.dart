@@ -30,6 +30,7 @@ class AccountHistoryApi {
   }
 
   Future<Response<List<dynamic>>> _fakeData(String path) async {
+    var current = DateTime.now();
     var questions = [
       {
         'id': 0,
@@ -55,52 +56,64 @@ class AccountHistoryApi {
       {
         'id': 3,
         'name': 'Virgin Megastore',
-        'date': '2022-06-28T08:23:00.000Z',
+        'date':
+            '2022-${_parse(current.month)}-${_parse(current.day - 1)}T08:23:00.000Z',
         'sumInCent': 50031,
         'currency': 'usd',
       },
       {
         'id': 4,
         'name': 'Dave Winklevoss',
-        'date': '2022-06-29T08:23:00.000Z',
+        'date':
+            '2022-${_parse(current.month)}-${_parse(current.day - 1)}T08:23:00.000Z',
         'sumInCent': 30000,
         'currency': 'usd',
       },
       {
         'id': 5,
         'name': 'Starbucks',
-        'date': '2022-06-29T08:23:00.000Z',
+        'date':
+            '2022-${_parse(current.month)}-${_parse(current.day - 1)}T08:23:00.000Z',
         'sumInCent': 5531,
         'currency': 'usd',
       },
       {
         'id': 6,
         'name': 'McDonalds',
-        'date': '2022-06-29T08:23:00.000Z',
+        'date':
+            '2022-${_parse(current.month)}-${_parse(current.day)}T08:23:00.000Z',
         'sumInCent': 5531,
         'currency': 'usd',
       },
       {
         'id': 7,
         'name': 'Darren Hodgkin',
-        'date': '2022-06-29T08:23:00.000Z',
+        'date':
+            '2022-${_parse(current.month)}-${_parse(current.day)}T08:23:00.000Z',
         'sumInCent': 13031,
         'currency': 'usd',
       },
       {
         'id': 8,
         'name': 'Pret A Manger',
-        'date': '2022-06-29T08:23:00.000Z',
+        'date':
+            '2022-${_parse(current.month)}-${_parse(current.day)}T08:23:00.000Z',
         'sumInCent': 5531,
         'currency': 'usd',
       },
     ];
-    return Future.value(
-      Response(
+
+    return Future.delayed(
+      const Duration(seconds: 1),
+      () => Response(
         data: questions,
         statusCode: 200,
         requestOptions: RequestOptions(path: path),
       ),
     );
+  }
+
+  String _parse(int value) {
+    return '${value > 9 ? value : '0$value'}';
   }
 }
